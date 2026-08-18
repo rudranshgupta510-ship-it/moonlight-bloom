@@ -3,79 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>For Hemaanya ❤️</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="romantic.css">
+  <link rel="stylesheet" href="./romantic.css">
 </head>
 
 <body>
 
-  <div class="stars"></div>
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-
   <main>
 
-    <!-- SCREEN 1 -->
     <section class="screen active" id="startScreen">
-
-      <div class="heart-wrap">
-        <div class="heart">♥</div>
-      </div>
-
-      <p class="small-text">
-        A little something special...
-      </p>
-
-      <button id="startBtn" class="glass-btn">
-        Tap to Begin
-      </button>
-
+      <div class="heart">♥</div>
+      <p>A little something special...</p>
+      <button id="startBtn">Tap to Begin</button>
     </section>
 
-
-    <!-- SCREEN 2 -->
     <section class="screen" id="introScreen">
-
-      <p class="eyebrow">
-        For Hemaanya
-      </p>
+      <p>For Hemaanya</p>
 
       <h1>
         Will You<br>
         <span>Be Mine?</span>
       </h1>
 
-      <div class="divider"></div>
+      <p>I have something special to ask you...</p>
 
-      <p class="message">
-        I have something special<br>
-        to ask you...
-      </p>
-
-      <button id="continueBtn" class="glass-btn">
-        Continue
-      </button>
-
+      <button id="continueBtn">Continue</button>
     </section>
 
-
-    <!-- SCREEN 3 -->
     <section class="screen" id="questionScreen">
 
       <div class="card">
 
         <div class="mini-heart">♥</div>
 
-        <p class="eyebrow">
-          One little question...
-        </p>
+        <p>One little question...</p>
 
         <h2>
           Would you like<br>
@@ -83,94 +45,83 @@
           part of my story?
         </h2>
 
-        <p class="subtext">
-          Whatever your answer,<br>
-          I'll respect it.
-        </p>
+        <p>Whatever your answer, I'll respect it.</p>
 
         <div class="buttons">
-
-          <button id="yesBtn" class="yes-btn">
-            Yes ✨
-          </button>
-
-          <button id="noBtn" class="no-btn">
-            No
-          </button>
-
+          <button id="yesBtn" class="yes">Yes ✨</button>
+          <button id="noBtn" class="no">No</button>
         </div>
 
       </div>
 
     </section>
 
-
-    <!-- SCREEN 4 -->
     <section class="screen" id="yesScreen">
 
-      <div id="heartContainer"></div>
+      <div class="heart big-heart">♥</div>
 
-      <div class="success">
+      <h2>You just made<br>this moment special.</h2>
 
-        <div class="big-heart">
-          ♥
-        </div>
+      <p>Thank you for saying yes. ❤️</p>
 
-        <p class="eyebrow">
-          Hemaanya
-        </p>
-
-        <h2>
-          You just made<br>
-          this moment special.
-        </h2>
-
-        <p class="subtext">
-          Thank you for saying yes. ❤️
-        </p>
-
-        <div class="sparkles">
-          ✦　✧　✦
-        </div>
-
-      </div>
+      <button id="whyBtn">
+        Do you want to know why I like you?
+      </button>
 
     </section>
 
-
-    <!-- SCREEN 5 -->
     <section class="screen" id="noScreen">
 
-      <div class="soft-heart">
-        ♡
-      </div>
+      <div class="heart">♡</div>
 
-      <p class="eyebrow">
-        Hemaanya
-      </p>
+      <h2>Thank you for being honest.</h2>
 
-      <h2>
-        Thank you for<br>
-        being honest.
-      </h2>
-
-      <p class="subtext">
-        I respect your answer.<br>
-        Wishing you happiness always.
-      </p>
+      <p>I respect your answer.</p>
 
     </section>
 
   </main>
 
+  <!-- WHY I LIKE YOU POPUP -->
+
+  <div class="modal" id="loveModal">
+
+    <div class="modal-box">
+
+      <div class="mini-heart">♥</div>
+
+      <h2>Why I Like You</h2>
+
+      <p>
+        I like you because you make ordinary moments
+        feel special. Your smile, your kindness, and
+        the way you make people feel comfortable
+        are some of the things I really appreciate
+        about you.
+        <br><br>
+        You are simply someone I enjoy having
+        in my life. ❤️
+      </p>
+
+      <button id="closeBtn">
+        Close ❤️
+      </button>
+
+    </div>
+
+  </div>
 
   <!-- MUSIC -->
-  <audio id="music" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
+
+  <audio id="music" loop>
+    <source src="./music.mp3" type="audio/mpeg">
   </audio>
 
+  <audio id="loveMusic" loop>
+    <source src="./love.mp3" type="audio/mpeg">
+  </audio>
 
-  <script src="romantic.js"></script>
+  <script src="./romantic.js"></script>
 
 </body>
 </html>
