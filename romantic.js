@@ -1,152 +1,127 @@
-const screens = {
-  start: document.getElementById("startScreen"),
-  intro: document.getElementById("introScreen"),
-  question: document.getElementById("questionScreen"),
-  yes: document.getElementById("yesScreen"),
-  no: document.getElementById("noScreen")
-};
+const startScreen = document.getElementById("startScreen");
+const introScreen = document.getElementById("introScreen");
+const questionScreen = document.getElementById("questionScreen");
+const yesScreen = document.getElementById("yesScreen");
+const noScreen = document.getElementById("noScreen");
+
+const startBtn = document.getElementById("startBtn");
+const continueBtn = document.getElementById("continueBtn");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+const whyBtn = document.getElementById("whyBtn");
+const loveModal = document.getElementById("loveModal");
+const closeBtn = document.getElementById("closeBtn");
 
 const music = document.getElementById("music");
+const loveMusic = document.getElementById("loveMusic");
 
 
-function showScreen(name) {
+function showScreen(screen) {
 
-  Object.values(screens).forEach(screen => {
-    screen.classList.remove("active");
+  document.querySelectorAll(".screen").forEach(item => {
+    item.classList.remove("active");
   });
 
-  screens[name].classList.add("active");
+  screen.classList.add("active");
 }
 
 
 /* START */
 
-document
-  .getElementById("startBtn")
-  .addEventListener("click", () => {
+startBtn.addEventListener("click", () => {
 
-    music.volume = 0.35;
+  music.volume = 0.4;
 
-    music.play().catch(() => {
-      console.log("Music could not autoplay.");
-    });
-
-    showScreen("intro");
+  music.play().catch(() => {
+    console.log("Music playback needs user interaction.");
   });
+
+  showScreen(introScreen);
+});
 
 
 /* CONTINUE */
 
-document
-  .getElementById("continueBtn")
-  .addEventListener("click", () => {
+continueBtn.addEventListener("click", () => {
 
-    showScreen("question");
+  showScreen(questionScreen);
 
-  });
+});
 
 
 /* YES */
 
-document
-  .getElementById("yesBtn")
-  .addEventListener("click", () => {
+yesBtn.addEventListener("click", () => {
 
-    showScreen("yes");
+  // Keep the first song playing.
+  showScreen(yesScreen);
 
-    createHeartBurst();
-
-  });
+});
 
 
 /* NO */
 
-document
-  .getElementById("noBtn")
-  .addEventListener("click", () => {
+noBtn.addEventListener("click", () => {
 
-    showScreen("no");
+  showScreen(noScreen);
 
+});
+
+
+/* WHY DO I LIKE YOU? */
+
+whyBtn.addEventListener("click", () => {
+
+  // Stop the first song.
+  music.pause();
+
+  music.currentTime = 0;
+
+  // Start the second song.
+  loveMusic.volume = 0.45;
+
+  loveMusic.currentTime = 0;
+
+  loveMusic.play().catch(() => {
+    console.log("Second song needs user interaction.");
   });
 
+  // Open popup.
+  loveModal.classList.add("show");
 
-/* HEART ANIMATION */
+});
 
-function createHeartBurst() {
 
-  const container =
-    document.getElementById("heartContainer");
+/* CLOSE POPUP */
 
-  // First big burst
-  for (let i = 0; i < 35; i++) {
-    createHeart(container, true);
+closeBtn.addEventListener("click", () => {
+
+  loveModal.classList.remove("show");
+
+});
+
+
+/* CLICK OUTSIDE POPUP */
+
+loveModal.addEventListener("click", event => {
+
+  if (event.target === loveModal) {
+
+    loveModal.classList.remove("show");
+
   }
 
-  // Continue creating hearts
-  const interval = setInterval(() => {
-
-    if (!screens.yes.classList.contains("active")) {
-
-      clearInterval(interval);
-
-      return;
-    }
-
-    createHeart(container, false);
-
-  }, 300);
-}
+});
 
 
-function createHeart(container, burst) {
-
-  const heart =
-    document.createElement("span");
-
-  heart.className = "floating-heart";
-
-  heart.textContent =
-    Math.random() > .5 ? "♥" : "♡";
-
-  heart.style.left =
-    `${Math.random() * 100}vw`;
-
-  heart.style.setProperty(
-    "--drift",
-    `${(Math.random() - .5) * 250}px`
-  );
-
-  heart.style.fontSize =
-    `${14 + Math.random() * 24}px`;
-
-  heart.style.animationDuration =
-    `${burst
-      ? 2 + Math.random() * 2
-      : 3 + Math.random() * 3}s`;
-
-  container.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
-}
-
-
-/* KEYBOARD */
+/* ESCAPE KEY */
 
 document.addEventListener("keydown", event => {
 
-  if (event.key !== "Enter") return;
+  if (event.key === "Escape") {
 
-  if (screens.start.classList.contains("active")) {
-
-    document.getElementById("startBtn").click();
-
-  } else if (
-    screens.intro.classList.contains("active")
-  ) {
-
-    document.getElementById("continueBtn").click();
+    loveModal.classList.remove("show");
 
   }
 
